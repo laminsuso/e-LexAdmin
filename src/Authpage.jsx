@@ -33,7 +33,7 @@ let navigate=useNavigate();
       
         try{
 if(isLogin){
-let res=await axios.post(`${BASE_URL}/api/auth/login`,{email,password})
+let res=await axios.post(`${BASE_URL}/admin/login`,{email,password})
 
 localStorage.setItem('token',res.data.token)
 toast.success("Logged in successfully",{containerId:"authPage"})
@@ -44,13 +44,14 @@ setTimeout(()=>{
     navigate('/')
 },3000)
 }else{
-    let res=await axios.post(`${BASE_URL}/api/auth/register`,{email,password})
+    let res=await axios.post(`${BASE_URL}/admin/register`,{email,password})
     toast.success(res.data.message,{containerId:"authPage"})
     setPassword("")
     setEmail("")
     setConfirmPassword("")
 }
         }catch(e){
+            console.log(e.message)
             if(e?.response?.data?.error){
   toast.error(e?.response?.data?.error,{containerId:"authPage"})
             }else{

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Dashboard from './Dashboard';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Schedule from './Schedule';
+
 import AuthPage from './Authpage';
 import Middleware from './middleware';
 function App() {
@@ -53,7 +53,7 @@ function App() {
           <Routes>
            <Route element={<Middleware/>}>
            <Route path="/" element={<Dashboard />} />
-           <Route path='/schedule' element={<Schedule />} />
+           
            </Route>
             <Route path='/auth/:login' element={<AuthPage />} />
           </Routes>
