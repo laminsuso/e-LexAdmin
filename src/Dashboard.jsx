@@ -12,6 +12,11 @@ const defaultPlan = {
   billingCycle: "monthly"
 };
 
+const formatGMD = (value) => {
+  const amount = Number(value) || 0;
+  return `D${amount.toFixed(2)}`;
+};
+
 function PlanDashboard() {
   const [monthlyPlans, setMonthlyPlans] = useState([]);
   const [yearlyPlans, setYearlyPlans] = useState([]);
@@ -115,7 +120,8 @@ function PlanDashboard() {
         <div>
           <h3 className="text-xl font-bold">{plan.name}</h3>
           <p className="text-2xl my-2">
-          ${typeof plan.price === 'number' ? plan.price.toFixed(2) : plan.price}</p>
+            {formatGMD(plan.price)}
+          </p>
           <div className="text-gray-600">
             <p>{plan.numberOfSigns} signatures</p>
             <p>{plan.numberOfEmails} emails</p>
@@ -199,7 +205,7 @@ function PlanDashboard() {
                 </div>
 
                 <div>
-                  <label className="block mb-2">Price</label>
+                  <label className="block mb-2">Price (GMD)</label>
                   <input
                     type="number"
                     value={formData.price}
